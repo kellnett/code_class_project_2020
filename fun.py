@@ -1,7 +1,5 @@
-##next--clean up code and annotate
-
 #codes the functions necessary to run 'runProject.py'
-#define main monitor screen as 'testMonitor'
+#define main monitor screen as 'testMonitor' in PsychoPy
 
 from psychopy import visual, event, core, misc
 from psychopy.hardware import keyboard
@@ -305,7 +303,7 @@ def Initialize():
     global log_file
 
     ##Change data file for each new subject (sub_01.csv, sub_02.csv, etc.)
-    log_file=open('C:/Users/Kelle/Desktop/Python/scripts/python scripts/sub_06.csv', 'a')
+    log_file=open('test_00.csv', 'a')
     
     #Initialize window
     ##Define main monitor as 'testMonitor' OR update below
@@ -548,7 +546,7 @@ def RandomizeTrialSequence(trials):
 
 
 #Input: Randomized trial sequence list: [color[0], interval]...
-#Output:Responses for each trial [timed color, ]
+#Output:None--writes data to .csv file [trial_interval, trial_color, RT, color_end, color_selected, rating]
 #If color==-1, it is a colorless/'white' trial
 def RunTrial(color=0, interval=30):
     global win, rect, fix
@@ -627,25 +625,14 @@ def RunTrial(color=0, interval=30):
     
     #Add all responses to log file, move to next row
     log_file.write(response + "\n")
-    
-    ##Can remove this when log_file is good to go
-    return(response)
-
-
 
 
 #Input: List of trials from generating sequence
 #Output:None
 #For each item in trial list, run task
 def RunTask(trials):
-
-
     for i in range(len(trials)):
         RunTrial(trials[i][0], trials[i][1])
-
-
-
-
 
 #Input: None
 #Output:None
